@@ -1,0 +1,25 @@
+// constants/opcionesInvito.js
+
+export const opcionesInvito = [
+  { label: 'SELECCIONA UNA OPCIÓN', value: '' },
+  { label: 'NINGUNO DE LOS ANTERIORES', value: 'NINGUNO' },
+  { label: 'ALUMNO', value: 'ALUMNO' },
+  { label: 'ADRIAN MOLINA', value: 'ADRIAN MOLINA' },
+  { label: 'ALDAHIR GOMEZ', value: 'ALDAHIR GOMEZ' },
+  { label: 'ANALIT ROMÁN ARCE', value: 'ANALIT ROMÁN ARCE' },
+  { label: 'ANALY ORTEGA', value: 'ANALY ORTEGA' },
+  { label: 'ALEJANDRA RIVAS', value: 'ALEJANDRA RIVAS' },
+  { label: 'ANGÉLICA NIETO', value: 'ANGÉLICA NIETO' },
+  { label: 'BRYAN MURGA', value: 'BRYAN MURGA' },
+  { label: 'CÉSAR SANTA OLALLA', value: 'CÉSAR SANTA OLALLA' },
+  { label: 'EMMANUEL MONTES DE OCA', value: 'EMMANUEL MONTES DE OCA' },
+  { label: 'JESÚS GUZMÁN', value: 'JESÚS GUZMÁN' },
+  { label: 'JESUS TRILLO', value: 'JESUS TRILLO' },
+  { label: 'KEREN GOMEZ', value: 'KEREN GOMEZ' },
+  { label: 'MELYSSA MONRROY', value: 'MELYSSA MONRROY' },
+  { label: 'MARCO SALGADO', value: 'MARCO SALGADO' },
+  { label: 'NORMAN HERNANDEZ', value: 'NORMAN HERNANDEZ' },
+  { label: 'RAUL CASTILLEJA', value: 'RAUL CASTILLEJA' },
+  { label: 'XIMENA MARTÍNEZ', value: 'XIMENA MARTÍNEZ' },
+  { label: 'YANIN VAZQUEZ', value: 'YANIN VAZQUEZ' },
+];
