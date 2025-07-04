@@ -4,6 +4,7 @@ export default ({ config }) => ({
   ...config,
   name: 'QrApp',
   slug: 'QrApp',
+  scheme: 'QrApp',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/icon.png',
@@ -33,5 +34,16 @@ export default ({ config }) => ({
       projectId: '9d7dac40-ae38-4c6e-bd37-be8e70470483',
     },
   },
-  plugins: ['expo-barcode-scanner'],
+  plugins: [
+    [
+      'expo-camera',
+      {
+        cameraPermission: 'Permite que QrApp acceda a la cámara',
+        microphonePermission: 'Permite que QrApp acceda al micrófono',
+        recordAudioAndroid: false,
+      },
+    ],
+    'expo-router',
+    'expo-web-browser',
+  ],
 });

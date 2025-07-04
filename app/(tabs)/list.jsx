@@ -61,9 +61,12 @@ export default function List() {
     }, [eventoActual])
   );
 
-  const filteredUsers = users.filter((user) =>
-    normalizeText(user?.nombre).includes(normalizeText(search))
-  );
+  const filteredUsers = users.filter((user) => {
+    const searchText = normalizeText(search);
+    const nombre = normalizeText(user?.nombre);
+    const telefono = user?.telefono || '';
+    return nombre.includes(searchText) || telefono.includes(search);
+  });
 
   return (
     <ImageBackground
@@ -82,7 +85,7 @@ export default function List() {
           <Ionicons name="search" size={20} color={colors.mutedText} />
           <TextInput
             style={[styles.searchInput, { color: colors.text }]}
-            placeholder="Buscar usuarios"
+            placeholder="Buscar por nombre o teléfono"
             value={search}
             onChangeText={setSearch}
             placeholderTextColor={colors.placeholder}

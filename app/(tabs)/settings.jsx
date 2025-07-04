@@ -116,16 +116,17 @@ const settings = () => {
           <>
             <Text style={[styles.label, { color: colors.text }]}>Cambiar Evento Activo:</Text>
             <View style={[styles.pickerContainer, { backgroundColor: colors.card }]}>
-              <Picker
-                selectedValue={eventoSeleccionado}
-                onValueChange={(value) => setEventoSeleccionado(value)}
-                style={{ color: colors.text }}
-                dropdownIconColor={colors.text}
-              >
-                {todosEventos.map((evento, idx) => (
-                  <Picker.Item key={idx} label={evento} value={evento} />
-                ))}
-              </Picker>
+            <Picker
+              selectedValue={eventoSeleccionado}
+              onValueChange={(value) => setEventoSeleccionado(value)}
+              style={{ color: colors.text }}
+              dropdownIconColor={colors.text}
+            >
+              {todosEventos.map((evento) => (
+                <Picker.Item key={evento} label={evento} value={evento} />
+              ))}
+            </Picker>
+
             </View>
 
             <TouchableOpacity
