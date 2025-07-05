@@ -20,6 +20,7 @@ export default function Scanner() {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [scannedId, setScannedId] = useState('');
   const cameraRef = useRef(null);
   const colors = useThemeColors();
 
@@ -28,21 +29,30 @@ export default function Scanner() {
   }, []);
 
   const resetScanner = () => {
-    setTimeout(() => setScanned(false), 3000);
+    setTimeout(() => {
+      setScanned(false);
+      setScannedId('');
+    }, 3000);
   };
+
+  // Normaliza texto removiendo acentos
+  const normalizeText = (str) =>
+    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const handleScan = async ({ data }) => {
     const id = String(data).trim();
-
     setScanned(true);
+    setScannedId(id); // Mostrar en pantalla
     setLoading(true);
 
     try {
-      const conferencista = await getEventoSeleccionado();
+      let conferencista = await getEventoSeleccionado();
       if (!conferencista) throw new Error("No hay evento seleccionado");
+      conferencista = normalizeText(conferencista);
 
+      // Obtener registro
       const getResponse = await fetch(
-        `${BASE_URL}/registros/get/${id}?conferencista=${encodeURIComponent(conferencista)}`
+        `${BASE_URL}/registros/${id}?conferencista=${encodeURIComponent(conferencista)}`
       );
 
       if (!getResponse.ok) {
@@ -62,6 +72,7 @@ export default function Scanner() {
         return;
       }
 
+      // Actualizar registro
       const updateResponse = await fetch(
         `${BASE_URL}/registros/${id}?conferencista=${encodeURIComponent(conferencista)}`,
         {
@@ -109,6 +120,12 @@ export default function Scanner() {
       <View style={styles.container}>
         <Text style={[styles.headerText, { color: colors.primary }]}>Escanear Código QR</Text>
 
+        {scannedId && (
+          <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 10, color: colors.primary }}>
+            ID escaneado: {scannedId}
+          </Text>
+        )}
+
         {loading ? (
           <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 20 }} />
         ) : (
@@ -141,6 +158,7 @@ export default function Scanner() {
     </ImageBackground>
   );
 }
+
 
 const styles = StyleSheet.create({
   background: {
